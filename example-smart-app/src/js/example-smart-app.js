@@ -29,6 +29,8 @@
           console.log(obv);
           
           var byCodes = smart.byCodes(obv, 'code');
+          console.log(byCodes);
+          
           var gender = patient.gender;
           var dob = new Date(patient.birthDate);
           var day = dob.getDate();
