@@ -17,6 +17,7 @@
                       code: {
                         $or: ['http://loinc.org|8302-2', 'http://loinc.org|8462-4',
                               'http://loinc.org|8480-6', 'http://loinc.org|2085-9',
+                              'http://loinc.org|15074-8',
                               'http://loinc.org|2089-1', 'http://loinc.org|55284-4']
                       }
                     }
@@ -51,15 +52,19 @@
           var diastolicbp = getBloodPressureValue(byCodes('55284-4'),'8462-4');
           var hdl = byCodes('2085-9');
           var ldl = byCodes('2089-1');
+          var glucose = byCodes('15074-8');
 
           var p = defaultPatient();
+          
           p.birthdate = dobStr;
           p.gender = gender;
           p.fname = fname;
           p.lname = lname;
           p.age = parseInt(calculateAge(dob));
           p.height = getQuantityValueAndUnit(height[0]);
-
+          
+          p.glucose = getQuantityValueAndUnit(glucose[0]);
+            
           if (typeof systolicbp != 'undefined')  {
             p.systolicbp = systolicbp;
           }
