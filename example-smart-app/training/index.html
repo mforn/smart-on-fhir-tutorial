@@ -226,6 +226,10 @@
 			var encounterId = smart.tokenResponse.encounter;
 			encounterId && fetchEncounter(smart, encounterId);
 
+			function showObservation(observation) {
+				console.log(observation);
+			}
+
 			api.fetchAll({
 				type: 'Observation',
 				query: {
@@ -234,7 +238,11 @@
 					}
 				}
 			}).then(function (observations) {
-				console.log(observations);
+				$.each(observations, function (index, e) {
+					if (e.status === 'final') {
+						showObservation(e);
+					}
+				});
 			});
 		}
 	}
