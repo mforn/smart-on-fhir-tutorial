@@ -226,8 +226,14 @@
 			var encounterId = smart.tokenResponse.encounter;
 			encounterId && fetchEncounter(smart, encounterId);
 
-			function showObservation(observation) {
-				console.log(observation);
+			function getObservation(observation) {
+				var code = observation.code;
+				var quantity = observation.valueQuantity;
+
+				if (code && code.text && quantity && quantity.value) {
+					return '<tr><td>' + code.text + '</td><td>' + 
+						quantity.value + ' ' + quantity.unit + '</td></tr>';
+				}
 			}
 
 			api.fetchAll({
@@ -238,11 +244,17 @@
 					}
 				}
 			}).then(function (observations) {
+				var content = ['<table><tr><td>Name</td><td>Value</td></tr>'];
+
 				$.each(observations, function (index, e) {
 					if (e.status === 'final') {
-						showObservation(e);
+						var value = getObservation(e);
+						value && content.push(value);
 					}
 				});
+				content.push('</table>');
+
+				$('#obvDiv').html(content.join(''));
 			});
 		}
 	}
