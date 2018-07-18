@@ -206,7 +206,6 @@
 			patientApi.fetchAll({
 				type: 'Patient'
 			}).then(function (response) {
-				console.log(response);
 				response = response[0];
 				$("#demo-name").html((response.name && response.name.length && response.name[0].text) ? response.name[0].text :
 					"Unknown");
