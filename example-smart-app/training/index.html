@@ -239,9 +239,7 @@
 			api.fetchAll({
 				type: 'Observation',
 				query: {
-					category: {
-						$or: ['vital-signs']
-					}
+					category: 'vital-signs'
 				}
 			}).then(function (observations) {
 				var content = ['<table><tr><td>Name</td><td>Value</td></tr>'];
