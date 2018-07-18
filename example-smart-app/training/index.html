@@ -193,7 +193,6 @@
 				_id: id
 			}
 		}).then(function (response) {
-			console.log(response);
 			var resource = response.data.entry[0].resource;
 			var loc = resource.location[0].location.display;
 			$('#demo-loc').html(loc);
@@ -202,7 +201,6 @@
 
 	function ready(smart) {
 		if (typeof smart.patient === "object") {
-			console.log(smart);
 			var patientApi = smart.patient.api;
 
 			patientApi.fetchAll({
