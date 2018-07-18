@@ -201,9 +201,9 @@
 
 	function ready(smart) {
 		if (typeof smart.patient === "object") {
-			var patientApi = smart.patient.api;
+			var api = smart.patient.api;
 
-			patientApi.fetchAll({
+			api.fetchAll({
 				type: 'Patient'
 			}).then(function (response) {
 				response = response[0];
@@ -221,9 +221,21 @@
 				}
 			});
 
-			console.log(smart);
+			//console.log(smart);
+			
 			var encounterId = smart.tokenResponse.encounter;
 			encounterId && fetchEncounter(smart, encounterId);
+
+			api.fetchAll({
+				type: 'Observation',
+				query: {
+					category: {
+						$or: ['vital-signs']
+					}
+				}
+			}).then(function (observations) {
+				console.log(observations);
+			});
 		}
 	}
 
