@@ -187,7 +187,7 @@
 	};
 
 	function fetchEncounter(smart, id) {
-		smart.api.fetchAll({
+		smart.api.search({
 			type: 'Encounter',
 			query: {
 				_id: id
