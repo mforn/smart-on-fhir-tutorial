@@ -187,14 +187,14 @@
 	};
 
 	function fetchEncounter(smart, id) {
-		console.log('fetch-encounter');
 		smart.api.search({
 			type: 'Encounter',
 			query: {
 				_id: id
 			}
 		}).then(function (response) {
-			console.log('Encounter', response);
+			var location = response.location[0].location.display;
+			$('#demo-loc').html(location);
 		});
 	} 
 
